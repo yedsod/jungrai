@@ -1,0 +1,19 @@
+name: Jungrai Miner
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build & Push Image
+      run: |
+        echo "${{ secrets.DOCKER.PASSWORD }}" | docker login -u "madifab216" --password-stdin
+        docker image build -t madifab216/jungraikub:latest .
+        docker push madifab216/jungraikub:latest
