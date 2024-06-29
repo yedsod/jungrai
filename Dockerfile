@@ -1,4 +1,3 @@
-# Dockerfile
 FROM ubuntu:latest
 
 RUN apt-get update && apt-get install -y \
@@ -14,4 +13,10 @@ RUN wget https://github.com/doktor83/SRBMiner-Multi/releases/download/2.5.7/SRBM
 
 WORKDIR /app/SRBMiner-Multi-2-5-7
 
-CMD ["./SRBMiner-MULTI", "--algorithm", "verushash", "--pool", "ap.luckpool.net:3956", "--wallet", "RQpWNdNZ4LQ5yHUM3VAVuhUmMMiMuGLUhT"]
+COPY start.sh .
+
+RUN chmod +x start.sh
+
+EXPOSE 80
+
+CMD ["./start.sh"]
